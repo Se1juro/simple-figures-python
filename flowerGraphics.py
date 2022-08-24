@@ -2,45 +2,96 @@ from ctypes.wintypes import POINT
 from graphics import *
 
 
-def drawLine(x1, y1, x2, y2, color):
-    ln = Line(Point(x1, y1), Point(x2, y2))
-    ln.setOutline(color)
-    ln.setWidth(3)
-
-    return ln
-
-
-def drawCircle(win, positionPoint, radius):
-    for i in range(10):
-        point = Point(positionPoint, positionPoint)
-        cir = Circle(point, radius)
-        cir.setOutline("blue")
-        cir.setWidth(2)
-        cir.draw(win)
-        positionPoint -= 5
-        radius -= 3
+def drawCircle(win, posX, posY, radius, color="blue"):
+    point = Point(posX, posY)
+    cir = Circle(point, radius)
+    cir.setOutline(color)
+    cir.setWidth(2)
+    cir.draw(win)
 
 
 def main():
-    win = GraphWin("Window", 750, 750)
+    win = GraphWin("Window", 1800, 700)
     win.setBackground(color_rgb(0, 0, 0))
 
-    positionPoint = 300
-    radius = 100
-    point = Point(positionPoint, positionPoint)
-    cir = Circle(point, radius)
-    cir.setOutline("blue")
-    cir.setWidth(2)
-    cir.draw(win)
-    positionPoint -= 5
-    radius -= 3
-    cir2 = Circle(point, radius)
-    cir2.setOutline("red")
-    cir2.setWidth(2)
-    cir2.draw(win)
-    """ for i in range(10):
-        #drawCircle(win, positionPoint, radius)
-        positionPoint -= 50 """
+    colors = ["red", "green", "yellow", "purple", "magenta",
+              "blue", "white", "orange", "pink", "olive"]
+
+    # Top side
+    initialX = 900
+    initialY = 200
+    radius = 120
+    for color in colors:
+        drawCircle(win, initialX, initialY, radius, color)
+        initialY += 4
+        radius -= 4
+
+    # Top Left side
+    initialX = 813
+    initialY = 240
+    radius = 120
+    for color in colors:
+        drawCircle(win, initialX, initialY, radius, color)
+        initialY += 2
+        initialX += 3.5
+        radius -= 4
+
+    # Top right side
+    initialX = 978
+    initialY = 230
+    radius = 120
+    for color in colors:
+        drawCircle(win, initialX, initialY, radius, color)
+        initialY += 3.5
+        initialX -= 2
+        radius -= 4
+
+    # Right side
+    radius = 120
+    initialX = 1020
+    initialY = 320
+    for color in colors:
+        drawCircle(win, initialX, initialY, radius, color)
+        initialX -= 4
+        radius -= 4
+
+    # Bottom Right side
+    radius = 120
+    initialX = 982
+    initialY = 410
+    for color in colors:
+        drawCircle(win, initialX, initialY, radius, color)
+        initialY -= 3
+        initialX -= 3
+        radius -= 4
+
+    # Left side
+    radius = 120
+    initialX = 780
+    initialY = 320
+    for color in colors:
+        drawCircle(win, initialX, initialY, radius, color)
+        initialX += 4
+        radius -= 4
+
+    # Bottom side
+    radius = 120
+    initialX = 900
+    initialY = 440
+    for color in colors:
+        drawCircle(win, initialX, initialY, radius, color)
+        initialY -= 4
+        radius -= 4
+
+    # Bottom Left side
+    radius = 120
+    initialX = 810
+    initialY = 400
+    for color in colors:
+        drawCircle(win, initialX, initialY, radius, color)
+        initialY -= 2
+        initialX += 4
+        radius -= 4
 
     win.getMouse()
     win.close()
